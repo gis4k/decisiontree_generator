@@ -22,19 +22,34 @@ print(type(xx))
 
 print(np.shape(xx))
 
-a = ['n','n','y','y','y','n','y','n','y','y','y','y','y','n']
-
-b = [0,0,1,1,1,0,1,0,1,1,1,1,1,0]
-c = [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-
-d = [1,1,1,1,1,1,1,0,0,0,0,0,0,0]
-
-
-
-print(sp.stats.entropy(b,c,2))
-print(sp.stats.entropy(d,c,2))
-
 
 #this is 0.940
 e = [9/14, 5/14]
 print(sp.stats.entropy(e,base =2))
+
+'''
+read .names file.
+'''
+nm = open('mush.names', 'r')
+#remove crlf of windows.
+print(nm)
+nmt = nm.read().replace('\r\n','').replace(',','').split('.')
+
+
+#print(len(nmt.pop(0)))
+decision = set(nmt.pop(0).translate(None, ','))
+nmt.pop(-1)
+
+print(decision)
+print(len(decision))
+
+arg_list = list()
+name_dict = dict()
+for x in nmt:
+	nd =x.split(':')
+	print(nd)
+	name_dict[nd[0]] = set(nd[1])
+	arg_list.append(nd[0])
+
+print(name_dict)
+print(name_dict[arg_list[0]])
