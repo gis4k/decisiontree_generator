@@ -3,6 +3,13 @@ import numpy as np
 import scipy as sp
 import scipy.stats
 
+class Dtree_node(object):
+    def __init__(self, data):
+        self.data = data
+        self.children = []
+
+    def add_child(self, obj):
+        self.children.append(obj)
 
 #xx = np.loadtxt("homework3data(temp365).txt", dtype='float', comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0)
 #xx = np.loadtxt("mush.data", dtype='unicode', comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0)
@@ -34,22 +41,18 @@ nm = open('mush.names', 'r')
 #remove crlf of windows.
 print(nm)
 nmt = nm.read().replace('\r\n','').replace(',','').split('.')
-
-
-#print(len(nmt.pop(0)))
-decision = set(nmt.pop(0).translate(None, ','))
 nmt.pop(-1)
-
-print(decision)
-print(len(decision))
 
 arg_list = list()
 name_dict = dict()
 for x in nmt:
-	nd =x.split(':')
-	print(nd)
-	name_dict[nd[0]] = set(nd[1])
-	arg_list.append(nd[0])
+    nd =x.split(':')
+    print(nd)
+    name_dict[nd[0]] = set(nd[1])
+    arg_list.append(nd[0])
+
 
 print(name_dict)
+#arg_list[0] is  result set.
 print(name_dict[arg_list[0]])
+
